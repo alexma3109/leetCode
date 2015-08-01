@@ -17,7 +17,7 @@ public class Solution {
 			if(map.containsKey(s.charAt(i))){
 				map.put(s.charAt(i), map.get(s.charAt(i)) - 1);
 				if(map.get(s.charAt(i) >= 0)){
-					count--;
+					count++;
 				}
 				while(count == t.length()){
 					int len = i - left + 1;
