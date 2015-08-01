@@ -13,7 +13,7 @@ public class Solution {
 		int left = 0;
 		int minStart = 0;
 		int count = t.length();
-		while(i < 0 ; i < s.length() ; i++){
+		for(i < 0 ; i < s.length() ; i++){
 			if(map.containsKey(s.charAt(i))){
 				map.put(s.charAt(i), map.get(s.charAt(i)) - 1);
 				if(map.get(s.charAt(i) >= 0)){
