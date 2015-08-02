@@ -23,6 +23,7 @@ public class Solution {
 					int len = i - left + 1;
 					if(len < minLen){
 						minLen = len;
+						minStart = left;
 					}
 					if(map.containsKey(s.charAt(left))){
 						map.put(s.charAt(left), map.get(s.charAt(left)) + 1);
