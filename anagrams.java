@@ -1,8 +1,7 @@
 public class Solution {
     public List<String> anagrams(String[] strs) {
         List<String> res = new ArrayList<String>();
-		HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
-		
+		HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();		
 		for(int i = 0 ; i < strs.length ; i++){
 			char[] charArray = strs[i].toArray();
 			Arrays.sort(charArray);
