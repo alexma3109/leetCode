@@ -3,15 +3,13 @@ public class Solution {
 		if(nums.length < 2){
 			return nums.length;
 		}
-		int pre = nums[0];
-		int i, j;
-		for(i = 1, j = 1; i < nums.length ; i++){
-			if(pre < nums[i]){
-				nums[j] = nums[i];
-				j++;
-				pre = nums[i];
+		int index = 1;
+		for(int i = 1 ; i < nums.length ; i++){
+			if(nums[i] != nums[i - 1]){
+				nums[index] = nums[i];
+				index++;
 			}
 		}
-		return j;
+		return index;
     }
 }
