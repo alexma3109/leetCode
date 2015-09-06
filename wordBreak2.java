@@ -1,4 +1,25 @@
-public class Solution {
+public class Solution {////tricky test case will not pass////
+    public List<String> wordBreak(String s, Set<String> wordDict) {
+        List<String> res = new ArrayList<String>();
+		helper(s, wordDict, 0, "", res);
+		return res;
+    }
+	public void helper(String s, Set<String> wordDict, int start, String str, List<String> res){
+		if(start >= s.length()){
+			res.add(str);
+			return;
+		}
+		for(int i = start ; i < s.length() ; i++){
+			String temp = s.substring(start, i + 1);
+			if(wordDict.contains(temp)){
+				String newStr = str.length() > 0 ? str + " " + temp : temp;
+				helper(s, wordDict, i + 1, newStr, res);
+			}
+		}
+	}
+}
+
+public class Solution2 {
     public ArrayList<String> wordBreak(String s, Set<String> dict) {
         Map<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
         return wordBreakHelper(s,dict,map);
