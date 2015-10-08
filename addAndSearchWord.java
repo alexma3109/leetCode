@@ -17,10 +17,10 @@ public class WordDictionary {
         TrieNode node = root;
 		for(int i = 0 ; i < word.length() ; i++){
 			int c = word.charAt(i) - 'a';
-			if(node.children[i] == null){
-				node.children[i] = new TrieNode();
+			if(node.children[c] == null){
+				node.children[c] = new TrieNode();
 			}
-			node = node.children[i];
+			node = node.children[c];
 		}
 		node.isWord = true;
     }
