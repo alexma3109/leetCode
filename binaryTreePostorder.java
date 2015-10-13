@@ -19,3 +19,33 @@ public class Solution {
 		res.add(root.val);		
 	}
 }
+
+public class Solution {
+    public ArrayList<Integer> postorderTraversal(TreeNode root) {
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        if(root == null){
+            return res;
+        }
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode node = root;
+        TreeNode pre = null;
+        while(!stack.isEmpty() || node != null){
+            if(node != null){
+                stack.push(node);
+                node = node.left;
+            }
+            else{
+                TreeNode temp = stack.peek();
+                if(temp.right != null && pre != temp.right){
+                    node = temp.right;
+                }
+                else{
+                    stack.pop();
+                    res.add(temp.val);
+                    pre = temp;
+                }
+            }
+        }
+        return res; 
+    }
+}
