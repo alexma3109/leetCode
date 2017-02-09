@@ -5,12 +5,12 @@ public class TreeNode {
     TreeNode(int x) { val = x; }
 }
 public class Solution {
-    public ArrayList<Integer> inorderTraversal(TreeNode root) {
-        ArrayList<Integer> res = new ArrayList<Integer>();
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<Integer>();
 		helper(res, root);
 		return res;
     }
-	public void helper(ArrayList<Integer> res, TreeNode root){
+	public void helper(List<Integer> res, TreeNode root){
 		if(root == null){
 			return;
 		}
@@ -18,4 +18,27 @@ public class Solution {
 		res.add(root.val);
 		helper(res, root.right);
 	}
+}
+
+public class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+		if(root == null){
+			return res;
+		}
+		Stack<TreeNode> stack = new Stack<>();
+		TreeNode node = root;
+		while(!stack.isEmpty() || node != null){
+			if(node != null){
+				stack.push(node);
+				node = node.left;
+			}
+			else{
+				node = stack.pop();
+				res.add(node.val);
+				node = node.right;
+			}
+		}
+		return res;
+    }
 }
