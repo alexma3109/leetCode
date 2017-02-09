@@ -4,7 +4,7 @@ public class TreeNode {
     TreeNode right;
     TreeNode(int x) { val = x; left = null; right = null; }
 }
-
+/******  Time Comp: O(Catalan(n)). C[n+1] = sum(C[i] * C[n-i])  ******/
 public class Solution {
     public List<TreeNode> generateTrees(int n) {
 		return helper(1, n);
@@ -12,6 +12,8 @@ public class Solution {
 	public List<TreeNode> helper(int start, int end){
 		List<TreeNode> res = new ArrayList<TreeNode>();
 		if(start > end){
+			res.add(null);/* very important!!!!! 
+			make sure the for loop can run at least once */
 			return res;
 		}
 		for(int i = start ; i <= end ; i++){
