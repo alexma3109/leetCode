@@ -50,3 +50,34 @@ public class Solution {
 		return res;
     }
 }
+
+public class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        TreeNode curr = root;
+        TreeNode prev = null;        
+        List<Integer> res = new ArrayList<>();
+        curr = root;
+        while(curr != null){
+            if(curr.left == null){
+                res.add(curr.val);
+                curr = curr.right;
+            }
+            else{
+                prev = curr.left;
+                while(prev.right != null && prev.right != curr){
+                    prev = prev.right;
+                }
+                if(prev.right == null){
+                    prev.right = curr;
+                    curr = curr.left;
+                }
+                else{
+                    prev.right = null;
+                    res.add(curr.val);
+                    curr = curr.right;
+                }
+            }
+        }
+        return res;
+    }
+}
