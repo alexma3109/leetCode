@@ -31,16 +31,16 @@ public class Solution {
         TreeNode pre = null;
         while(!stack.isEmpty() || node != null){
             if(node != null){
-                stack.push(node);
+                stack.push(node); // keep going left and push into stack //
                 node = node.left;
             }
             else{
                 TreeNode temp = stack.peek();
                 if(temp.right != null && pre != temp.right){
-                    node = temp.right;
+                    node = temp.right; // when there's no left, and the right is not visited yet, go right //
                 }
                 else{
-                    stack.pop();
+                    stack.pop();  // no left && no right (or right is visited), pop and add in list //
                     res.add(temp.val);
                     pre = temp;
                 }
