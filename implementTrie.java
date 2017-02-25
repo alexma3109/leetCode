@@ -1,53 +1,59 @@
-public class TrieNode {
-	boolean isWord;////String word;////
-	TrieNode[] children;
-	
-	public TrieNode(){
-		isWord = false;////word = "";////
-		children = new TrieNode[26];
-	}
+class TrieNode {
+    TrieNode[] children;
+    boolean isWord;
+    public TrieNode(){
+        isWord = false;
+        children = new TrieNode[26];
+    }
+}
+public class Trie {
+    private TrieNode root;
+    /** Initialize your data structure here. */
+    public Trie() {
+        root = new TrieNode();
+    }
+    
+    /** Inserts a word into the trie. */
+    public void insert(String word) {
+        TrieNode node = root;
+        for(char c : word.toCharArray()){
+            if(node.children[c - 'a'] == null){
+                node.children[c - 'a'] = new TrieNode();
+            }
+            node = node.children[c - 'a'];
+        }
+        node.isWord = true;
+    }
+    
+    /** Returns if the word is in the trie. */
+    public boolean search(String word) {
+        TrieNode node = root;
+        for(char c : word.toCharArray()){
+            if(node.children[c - 'a'] == null){
+                return false;
+            }
+            node = node.children[c - 'a'];
+        }
+        return node.isWord;
+    }
+    
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    public boolean startsWith(String prefix) {
+        TrieNode node = root;
+        for(char c : prefix.toCharArray()){
+            if(node.children[c - 'a'] == null){
+                return false;
+            }
+            node = node.children[c - 'a'];
+        }
+        return true;
+    }
 }
 
-public class Trie {
-	TrieNode root;
-	
-	public Trie(){
-		root = new TrieNode();
-	}
-	
-	public void insert (String word) {
-		TrieNode node = root;
-		for(int i = 0 ; i < word.length() ; i++){
-			int pos = word.charAt(i) - 'a';
-			if(node.children[pos] == null){
-				node.children[pos] = new TrieNode();
-			}
-			node = node.children[pos];
-		}
-		node.isWord = true;////node.word = word;////
-	}
-	
-	public boolean search(String word){
-		TrieNode node = root;
-		for(int i = 0 ; i < word.length() ; i++){
-			int pos = word.charAt(i) - 'a';
-			if(node.children[pos] == null){
-				return false;
-			}
-			node = node.children[pos];
-		}
-		return node.isWord;////node.word.equals(word);////
-	}
-	
-	public boolean startWith(String prefix){
-		TrieNode node = root;
-		for(int i = 0 ; i < prefix.length() ; i++){
-			int pos = prefix.charAt(i) - 'a';
-			if(node.children[pos] == null){
-				return false;
-			}
-			node = node.children[pos];
-		}
-		return true;
-	}
-}
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie obj = new Trie();
+ * obj.insert(word);
+ * boolean param_2 = obj.search(word);
+ * boolean param_3 = obj.startsWith(prefix);
+ */

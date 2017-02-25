@@ -11,19 +11,16 @@ public class Solution {
 		if(root == null){
 			return 0;
 		}
-		int left = leftNodes(root.left);
-		int right = rightNodes(root.right);
+		int left = leftNodes(root);
+		int right = rightNodes(root);
 		if(left == right){
-			return (1 << (left + 1)) - 1;
+			return (1 << left) - 1;
 		}
 		else{
 			return countNodes(root.left) + countNodes(root.right) + 1;
 		}
 	}
 	public int leftNodes (TreeNode root) {
-	    if(root == null){
-	        return 0;
-	    }
 		int count = 0;
 		while(root != null){
 			root = root.left;
@@ -32,9 +29,6 @@ public class Solution {
 		return count;
 	}
 	public int rightNodes (TreeNode root) {
-	    if(root == null){
-	        return 0;
-	    }
 		int count = 0;
 		while(root != null){
 			root = root.right;
