@@ -9,17 +9,14 @@ public class Solution {
         if(root == null){
             return null;
         }
-        int min = Math.min(p.val, q.val);
-        int max = Math.max(p.val, q.val);
-        if(root.val >= min && root.val <= max){
-            return root;
+        while((root.val < p.val && root.val < q.val) || (root.val > p.val && root.val > q.val)){
+            if(root.val < p.val && root.val < q.val){
+                root = root.right;
+            }
+            else{
+                root = root.left;
+            }
         }
-        if(root.val < min){
-            return lowestCommonAncestor(root.right, p, q);
-        }
-        if(root.val > max){
-            return lowestCommonAncestor(root.left, p, q);
-        }
-        return null;
+        return root;
     }
 }
