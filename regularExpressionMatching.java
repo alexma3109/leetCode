@@ -30,11 +30,11 @@ public class Solution {
     public boolean isMatch(String s, String p) {
         boolean[][] dp = new boolean[s.length() + 1][p.length() + 1];
         dp[0][0] = true;
-        for (int j = 1; j < dp[0].length; j++) {
-            if (p.charAt(j - 1) == '*') {
-                if (dp[0][j - 1] || (j > 1 && dp[0][j - 2])) {
-                    dp[0][j] = true;
-                }
+        // except dp[0][0], dp[i][0] are all false //
+        // below loop is for the cases that p has useless prefix //
+        for (int j = 1; j < p.length(); j++) {
+            if (p.charAt(j) == '*') {
+                dp[0][j + 1] = dp[0][j - 1]; // based on the defination, when * equals 0 of previous char //
             } 
         }
         for(int i = 0 ; i < s.length() ; i++){
