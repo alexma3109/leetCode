@@ -17,17 +17,18 @@ public class Solution {
 		}
 		return max;
     }
+    /* largest rectangle in histogram */
 	public int helper(int[] height){
 		int max = 0;
-		Stack<Integer> stack = new Stack<Integer>();
+		Deque<Integer> deque = new LinkedList<Integer>();
 		for(int i = 0 ; i <= height.length ; i++){
 			int cur = i == height.length ? -1 : height[i];
-			while(!stack.isEmpty() && cur <= height[stack.peek()]){
-				int h = height[stack.pop()];
-				int w = stack.isEmpty() ? i : i - stack.peek() - 1;
+			while(!deque.isEmpty() && cur <= height[deque.peek()]){
+				int h = height[deque.pop()];
+				int w = deque.isEmpty() ? i : i - deque.peek() - 1;
 				max = Math.max(max, h * w);
 			}
-			stack.push(i);
+			deque.push(i);
 		}
 		return max;
 	}
