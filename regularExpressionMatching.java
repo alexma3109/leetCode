@@ -40,8 +40,8 @@ public class Solution {
         for(int i = 0 ; i < s.length() ; i++){
             for(int j = 0 ; j < p.length() ; j++){
                 if(p.charAt(j) == s.charAt(i)){
-                    dp[i + 1][j + 1] = dp[i][j];
-                }
+                    dp[i + 1][j + 1] = dp[i][j];//dp[x][y], x, y stands for length 
+                }//so dp[i + 1][j + 1] <--> s.charAt(i), p.charAt(j)
                 else if(p.charAt(j) == '.'){
                     dp[i + 1][j + 1] = dp[i][j];
                 }
