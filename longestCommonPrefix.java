@@ -7,7 +7,7 @@ public class Solution {
         for(String str : strs) {
             res = str.length() < res.length() ? str : res;
         }
-        int j = 0;  // Once not match, only resume matching from bresk position
+        int j = 0;  // Once not match, only resume matching from break position
                     // all strings before will be fine for sure
         for(int i = res.length() ; i > 0 ; i--) {
             String temp = res.substring(0, i);
