@@ -11,21 +11,25 @@ public class Solution {
 				j++;
 			}
 			else if(j < p.length() && p.charAt(j) == '*'){
-				star = j;
-				j++;
-				mark = i;
+				star = j; // keep the star index
+				j++; // p moves to the next char but s remains
+				mark = i; // mark current i
 			}
-			else if(star != -1){
-				j = star + 1;
-				mark++;
-				i = mark;
+			else if(star != -1){ // '*' is working
+				j = star + 1; // target the next char after '*'
+				mark++;	
+				// mark keeps going until found matched char, 
+				// mark will be that char index in s and plus 1,
+				// so if that match isn't working later, it'll go and
+				// find the next match.
+				i = mark; // get marked index and do the checks in the next loop
 			}
 			else{
 				return false;
 			}
 		}
 		while(j < p.length() &&  p.charAt(j) == '*'){
-			j++;
+			j++; // succeeding '*' in p is allowed
 		}
 		return j == p.length();
     }
