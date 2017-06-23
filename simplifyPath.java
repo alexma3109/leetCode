@@ -1,27 +1,27 @@
 public class Solution {
     public String simplifyPath(String path) {
-        if(path == null || path.length() == 0){
-			return path;
-		}
-		String[] strings = path.split("/");
-		StringBuilder sb = new StringBuilder("/");
-		ArrayList<String> paths = new ArrayList<String>();
-		for(String s : strings){
-			if(s.equals("..")){
-				if(paths.size() > 0){
-					paths.remove(paths.size() - 1);
-				}
-			}
-			else if(!s.equals(".") && !s.equals("")){
-				paths.add(s);
-			}
-		}
-		for(String s : paths){
-			sb.append(s);
-			if(s != paths.get(paths.size() - 1)){
-				sb.append("/");				
-			}
-		}
-		return sb.toString();
+        String[] strs = path.split("/");
+        Deque<String> dq = new LinkedList<>();
+        for(String str : strs) {
+            if(str.equals("") || str.equals(".")) {
+                continue;
+            }
+            if(str.equals("..")) {
+                if(!dq.isEmpty()) {
+                    dq.pop();
+                }
+            }
+            else {
+                dq.push(str);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!dq.isEmpty()) {
+            sb.append('/');
+            String s = dq.pollLast();
+            System.out.println(s);
+            sb.append(s);
+        }
+        return sb.length() == 0 ? "/" :sb.toString();
     }
 }
