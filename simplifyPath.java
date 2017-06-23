@@ -18,9 +18,7 @@ public class Solution {
         StringBuilder sb = new StringBuilder();
         while(!dq.isEmpty()) {
             sb.append('/');
-            String s = dq.pollLast();
-            System.out.println(s);
-            sb.append(s);
+            sb.append(dq.pollLast());
         }
         return sb.length() == 0 ? "/" :sb.toString();
     }
