@@ -1,3 +1,5 @@
+/* one HashMap, two pointers */
+
 public class Solution {
     public String minWindow(String s, String t) {
 		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
@@ -19,7 +21,7 @@ public class Solution {
 				if(map.get(s.charAt(i)) >= 0){
 					count++;
 				}
-				while(count == s.length()){
+				while(count == s.length()){ // the window formatted when the first match found //
 					int len = i - left + 1;
 					if(len < minLen){
 						minLen = len;
