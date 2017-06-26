@@ -1,7 +1,7 @@
 //// len is the length of considering part // len from 2 to <= n ////
 //// i is the start index of s1 // i from 0 to < n - len + 1 ////
 //// j is the start index of s2 // j from 0 to < n - len + 1 ////
-//// k is the left sub-part of the considering part // k from 1 to < len ////
+//// k is the left sub-part of the considering part // k from 1 to len - 1 ////
 public class Solution {
     public boolean isScramble(String s1, String s2) {
 		if(s1.length() != s2.length()){
