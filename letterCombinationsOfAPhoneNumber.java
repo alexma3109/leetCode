@@ -2,23 +2,26 @@
 
 public class Solution {
     public List<String> letterCombinations(String digits) {
-        String[] mapping = new String[] {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-        LinkedList<String> q = new LinkedList<>();
-        if(digits == null || digits.length() == 0){
-            return q;
+        String[] strings = {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        Queue<String> q = new LinkedList<>();
+        List<String> res = new ArrayList<>();
+        if(digits.length() == 0) {
+            return res;
         }
-        q.add("");// initialize the loop !important //
-        for(int i = 0 ; i < digits.length() ; i++){
-            int num = digits.charAt(i) - '0';
-            while(q.peek().length() == i){// as long as it's length is i, then it's not handled yet //
-                String str = q.remove();
-                for(char c : mapping[num].toCharArray()){
-                    StringBuilder sb = new StringBuilder(str);
-                    sb.append(c);
-                    q.offer(sb.toString());
+        q.offer(""); // initialize //
+        for(char c : digits.toCharArray()) {
+            int index = Character.getNumericValue(c);
+            int len = q.size(); // get the queue size first //
+            for(int i = 0 ; i < len ; i++) { // loop len times, not queue.size() //
+                String str = q.poll();
+                for(char letter : strings[index].toCharArray()) {
+                    q.offer(str + letter);
                 }
             }
         }
-        return q;
+        while(!q.isEmpty()) {
+            res.add(q.poll());
+        }
+        return res;
     }
 }

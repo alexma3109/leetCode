@@ -1,3 +1,40 @@
+/* dp[i][j] is a string of length == i and a string of length == j */
+/* So that is s.charAt(i - 1) and p.charAt(j - 1) */
+public class Solution {
+    public boolean isMatch(String s, String p) {
+        boolean[][] dp = new boolean[s.length() + 1][p.length() + 1];
+        dp[0][0] = true; // both length == 0 is true //
+        for(int j = 2 ; j <= p.length() ; j++) {
+            if(p.charAt(j - 1) == '*') {
+                dp[0][j] = dp[0][j - 2];
+            } // '*' can stands for 0 of preceding char //
+        }
+        // if s.length() != 0 && p.length() == 0, it's false //
+        for(int i = 1 ; i <= s.length() ; i++) {
+            for(int j = 1 ; j <= p.length() ; j++) {
+                if(s.charAt(i - 1) == p.charAt(j - 1) || p.charAt(j - 1) == '.') {
+                    dp[i][j] = dp[i - 1][j - 1];
+                }
+                else if(j > 1 && p.charAt(j - 1) == '*') { // '*' cannot be the first char //
+                    /* in this case, s length is still (i - 1), while p length is (j - 2) */
+                    if(s.charAt(i - 1) == p.charAt(j - 2) || p.charAt(j - 2) == '.') {
+                        dp[i][j] = dp[i][j - 1] || dp[i][j - 2] || dp[i - 1][j];
+                        /* s of length == i <--> p of length (j - 1) --> 1 preceding char */
+                        /* s of length == i <--> p of length (j - 2) --> 0 preceding char */
+                        /* s of length == (i - 1) <--> p of length j --> 2 preceding char */
+                    }
+                    else {
+                        dp[i][j] = dp[i][j - 2]; // '*' -> 0 of preceding char //
+                    }
+                }
+            }
+        }
+        return dp[s.length()][p.length()];
+    }
+}
+
+///////////////////////////////////////////////////////////////////
+
 public class Solution {
     public boolean isMatch(String s, String p) {
 		if(p.length() == 0){
@@ -26,6 +63,7 @@ public class Solution {
     }
 }
 ///////////////////////////////////////////////////////////////////
+
 public class Solution {
     public boolean isMatch(String s, String p) {
         boolean[][] dp = new boolean[s.length() + 1][p.length() + 1];
