@@ -1,4 +1,7 @@
 /* one HashMap, two pointers */
+/* left stay, scan right */
+/* if value in map >= 0, then count++ */
+/* after window formatted, move left or right */
 
 public class Solution {
     public String minWindow(String s, String t) {
