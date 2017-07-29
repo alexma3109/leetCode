@@ -55,3 +55,42 @@ public class Solution {
         return sb.toString();
     }
 }
+////////////////////////////////////////////////////////////////////////////
+/* n is the total nodes of the tree, time O(n) + O(log(n)) => O(n) */
+/* space O(log(n)) log(n) layers */
+public class Solution {
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+        Deque<TreeNode> stack = new LinkedList<>();
+        dfs(res, root, stack);
+        return res;
+    }
+    public void dfs(List<String> res, TreeNode root, Deque<TreeNode> stack) {
+        if (root == null) {
+            return;
+        }
+        stack.push(root);
+        if(root.left == null && root.right == null) {
+            helper(res, stack);
+            stack.pop();
+            return;
+        }
+        dfs(res, root.left, stack);       
+        dfs(res, root.right, stack);
+        stack.pop();
+        return;
+    }
+    public void helper(List<String> res, Deque<TreeNode> stack) {
+        StringBuilder sb = new StringBuilder();
+        Iterator desIter = stack.descendingIterator();
+        while(desIter.hasNext()) {
+            TreeNode node = (TreeNode) desIter.next();
+            sb.append(node.val);
+            sb.append("->");
+        }
+        res.add(sb.toString().substring(0, sb.length() - 2));
+    }
+}
