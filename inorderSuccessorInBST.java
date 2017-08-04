@@ -2,7 +2,7 @@
 /* binary search */
 /* only when node.val > target.val, the res = root */
 /* otherwise, even root is the target, still keep going right */
-/* time O(log(n)) */
+/* time O(log(n)) only if it's a balanced, otherwise worst case O(n) */
 
 /**
  * Definition for a binary tree node.
